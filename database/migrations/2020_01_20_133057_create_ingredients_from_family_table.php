@@ -14,7 +14,12 @@ class CreateIngredientsFromFamilyTable extends Migration
     public function up()
     {
         Schema::create('ingredients_from_family', function (Blueprint $table) {
-            $table->increments('id');
+            $table->integer('ingredient_id')->unsigned();
+            $table->integer('ingredient_family_id')->unsigned();
+            $table->foreign('ingredient_id')
+                            ->references('id')->on('ingredients');
+            $table->foreign('ingredient_family_id')
+                            ->references('id')->on('ingredients_family');
             $table->timestamps();
         });
     }

@@ -14,7 +14,12 @@ class CreateUsersChoosingIngredientsTable extends Migration
     public function up()
     {
         Schema::create('users_choosing_ingredients', function (Blueprint $table) {
-            $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('ingredient_id')->unsigned();
+            $table->foreign('user_id')
+                            ->references('id')->on('users');
+            $table->foreign('ingredient_id')
+                            ->references('id')->on('ingredients');
             $table->timestamps();
         });
     }

@@ -14,7 +14,12 @@ class CreateRestaurantsOfferingDishesTable extends Migration
     public function up()
     {
         Schema::create('restaurants_offering_dishes', function (Blueprint $table) {
-            $table->increments('id');
+            $table->integer('restaurant_id')->unsigned();
+            $table->integer('dish_id')->unsigned();
+            $table->foreign('restaurant_id')
+                            ->references('id')->on('restaurants');
+            $table->foreign('dish_id')
+                            ->references('id')->on('dishes');
             $table->timestamps();
         });
     }
