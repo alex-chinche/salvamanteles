@@ -1,24 +1,15 @@
 <?php
 
-use App\Helpers\RestaurantReader;
+namespace App\Helpers;
+
 use App\Restaurant;
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
-class DatabaseSeeder extends Seeder
+class RestaurantReader
 {
-    //$counter = 0;
-
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
+    function __construct()
     {
-        $this->Execute();
+        
     }
-
     public function FileReader()
     {
         $restaurantsNamesList = [];
@@ -31,7 +22,7 @@ class DatabaseSeeder extends Seeder
         }
         fgetcsv($CSVfile);
         while ($fila = fgetcsv($CSVfile, $delimitador)) {
-            for ($i = 1; $i < count($fila); $i++) {
+            foreach ($fila as $key => $value) {
                 array_push($restaurantsNamesList, $fila[0]);
                 array_push($restaurantsIconsList, $fila[1]);
             }
@@ -39,7 +30,6 @@ class DatabaseSeeder extends Seeder
         fclose($CSVfile);
 
         $both_arrays = [$restaurantsNamesList, $restaurantsIconsList];
-
         return $both_arrays;
     }
 
@@ -47,10 +37,8 @@ class DatabaseSeeder extends Seeder
     {
         $namesList = $both_arrays[0];
         $iconsList = $both_arrays[1];
-        $counter = count($namesList);
 
-        //   print($counter); exit;
-        for ($i = 0; $i < $counter; $i++) {
+        for ($i = 0; $i < count($$namesList); $i++) {
             try {
                 $restaurant = new Restaurant();
                 $restaurant->name = $namesList[$i];
@@ -59,7 +47,6 @@ class DatabaseSeeder extends Seeder
             } catch (\Throwable $th) {
             }
         }
-        print_r($both_arrays);
     }
     public function Execute()
     {

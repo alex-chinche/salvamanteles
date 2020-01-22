@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Helpers\RestaurantReader;
 
 class RestaurantController extends Controller
 {
@@ -13,7 +14,8 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        //
+        $reader_inv = new RestaurantReader();
+        $reader_inv->Execute();
     }
 
     /**
@@ -34,7 +36,7 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
