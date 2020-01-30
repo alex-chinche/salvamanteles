@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersChoosingIngredientsTable extends Migration
+class ProfilesChoosingIngredientsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateUsersChoosingIngredientsTable extends Migration
      */
     public function up()
     {
-        Schema::create('users_choosing_ingredients', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned();
+        Schema::create('profiles_choosing_ingredients', function (Blueprint $table) {
+            $table->integer('profile_id')->unsigned();
             $table->integer('ingredient_id')->unsigned();
-            $table->foreign('user_id')
-                            ->references('id')->on('users');
+            $table->foreign('profile_id')
+                            ->references('id')->on('profile');
             $table->foreign('ingredient_id')
                             ->references('id')->on('ingredients');
-            $table->timestamps();
         });
     }
 
@@ -31,6 +30,6 @@ class CreateUsersChoosingIngredientsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_choosing_ingredients');
+        //
     }
 }

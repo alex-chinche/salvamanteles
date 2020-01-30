@@ -11,4 +11,11 @@ class Ingredient_Family extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function ingredients()
+    {
+        return $this->belongsToMany('App\Ingredient', 'ingredients_from_family', 'ingredient_family_id' , 'ingredient_id');
+    }
+
+
 }

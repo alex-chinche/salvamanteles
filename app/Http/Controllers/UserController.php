@@ -5,24 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Application;
-use App\Helpers\Token;
+
 
 class UserController extends Controller
 {
-    public function createUser(Request $request)
-    {
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = $request->password;
-        $user->save();
-        $token1 = new Token();
-        $token2 = $token1->set_token($user->email);
-
-        return response()->json([
-            'token' => $token2
-        ], 200);
-    }
+    
 
     public function loginUser(Request $request)
     {

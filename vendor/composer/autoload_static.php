@@ -474,6 +474,7 @@ class ComposerStaticInita1f2e8c20dcd34295ddba26fc24d52ba
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Dish' => __DIR__ . '/../..' . '/app/Dish.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Helpers\\RestaurantReader' => __DIR__ . '/../..' . '/app/Http/Helpers/RestaurantReader.php',
         'App\\Helpers\\Token' => __DIR__ . '/../..' . '/app/Http/Helpers/Token.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -4416,7 +4417,6 @@ class ComposerStaticInita1f2e8c20dcd34295ddba26fc24d52ba
         'phpDocumentor\\Reflection\\Types\\String_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/String_.php',
         'phpDocumentor\\Reflection\\Types\\This' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/This.php',
         'phpDocumentor\\Reflection\\Types\\Void_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Void_.php',
-        'restaurants' => __DIR__ . '/../..' . '/database/seeds/restaurants.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
