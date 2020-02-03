@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+
 
 class Profile extends Model
 {
@@ -50,18 +53,25 @@ public function register(Request $request)
 
     }
 
-    /*public function show_user_apps(Request $request)
+    public function rename(Request $request)
     {
-         
-        $user = $this->get_logged_user($request);
+        try {
 
-        $data = DB::select('select apps.* from apps, has_relation where has_relation.user_id = ' . $user->id . ' and has_relation.app_id = apps.id');
+            $affected = DB::table('profiles')
+            ->where('id', $request->profile_id)
+            ->update(['name' => $request->name]);
+              
+            return response()->json([
+               200
+            ], 200);       
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => "wrong data"
+            ], 401);
+       }
+    
 
-        return $data;
- 
-
-    }*/
-
+    }
 
 
 

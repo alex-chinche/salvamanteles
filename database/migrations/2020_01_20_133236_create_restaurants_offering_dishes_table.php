@@ -17,9 +17,9 @@ class CreateRestaurantsOfferingDishesTable extends Migration
             $table->integer('restaurant_id')->unsigned();
             $table->integer('dish_id')->unsigned();
             $table->foreign('restaurant_id')
-                            ->references('id')->on('restaurants');
+                            ->references('id')->on('restaurants')->onUpdate('cascade');
             $table->foreign('dish_id')
-                            ->references('id')->on('dishes');
+                            ->references('id')->on('dishes')->onUpdate('cascade');
             $table->timestamps();
         });
     }

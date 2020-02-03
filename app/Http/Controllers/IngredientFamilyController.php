@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Ingredient_Family;
 
 class IngredientFamilyController extends Controller
 {
@@ -13,7 +14,7 @@ class IngredientFamilyController extends Controller
      */
     public function index()
     {
-        //
+        return json_encode(Ingredient_Family::all());
     }
 
     /**
@@ -26,6 +27,11 @@ class IngredientFamilyController extends Controller
         //
     }
 
+    public function remove(Request $request)
+    {
+       DB::delete('delete from ingredients_family where id = ' . $request->ingredient_family_id);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -34,7 +40,16 @@ class IngredientFamilyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ingredient_family_inv = new Ingredient_Family();
+
+        return $ingredient_family_inv->register($request);
+    }
+
+    public function rename(Request $request)
+    {
+        $ingredient_family_inv = new Ingredient_Family();
+
+        return $ingredient_family_inv->rename($request);
     }
 
     /**

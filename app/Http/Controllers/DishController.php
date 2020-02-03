@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Dish;
 
 class DishController extends Controller
 {
@@ -13,7 +14,7 @@ class DishController extends Controller
      */
     public function index()
     {
-        //
+        return json_encode(Ingredient::all());
     }
 
     /**
@@ -26,6 +27,13 @@ class DishController extends Controller
         //
     }
 
+    public function remove(Request $request)
+    {
+       DB::delete('delete from dishes where id = ' . $request->dish_id);
+    }
+
+    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -34,8 +42,18 @@ class DishController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dish_inv = new Dish();
+
+        return $dish_inv->register($request);
     }
+
+    public function rename(Request $request)
+    {
+        $dish_inv = new Dish();
+
+        return $dish_inv->rename($request);
+    }
+
 
     /**
      * Display the specified resource.

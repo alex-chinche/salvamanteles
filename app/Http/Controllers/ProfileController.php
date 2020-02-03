@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Profile;
 
 class ProfileController extends Controller
 {
@@ -13,7 +14,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //
+        return json_encode(Profile::all());
     }
 
     /**
@@ -26,6 +27,11 @@ class ProfileController extends Controller
         //
     }
 
+    public function remove(Request $request)
+    {
+       DB::delete('delete from profiles where id = ' . $request->prfile_id);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -34,7 +40,16 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-       
+        $profile_inv = new Profile();
+
+        return $profile_inv->register($request);
+    }
+
+    public function rename(Request $request)
+    {
+        $profile_inv = new Profile();
+
+        return $profile_inv->rename($request);
     }
 
     /**

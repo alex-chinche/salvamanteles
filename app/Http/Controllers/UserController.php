@@ -10,8 +10,42 @@ use App\Application;
 class UserController extends Controller
 {
     
+    public function index()
+    {
+        return json_encode(User::all());
+    }
 
-    public function loginUser(Request $request)
+    public function store(Request $request) {
+
+        $users_inv = new User();
+
+        return $users_inv->register($request);
+
+    }
+
+    public function rename(Request $request) {
+
+        $users_inv = new User();
+
+        return $users_inv->rename($request);
+
+    }
+
+    public function login(Request $request)
+    {
+        $users_inv = new User();
+
+        return $users_inv->login($request);
+    }
+
+    public function recover_password(Request $request)
+    {
+        $users_inv = new User();
+
+        return $users_inv->recover_password($request);
+    }
+
+    /*public function loginUser(Request $request)
     {
         $data = ['email' => $request->email];
         $user = User::where('email', $request->email)->first();
@@ -34,9 +68,9 @@ class UserController extends Controller
                 'message' => "incorrect email"
             ], 401);
         }
-    }
+    }*/
 
-    function generateRandomString($length)
+  /*  function generateRandomString($length)
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
@@ -45,9 +79,9 @@ class UserController extends Controller
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
         return $randomString;
-    }
+    }*/
 
-    public function rememberPassword(Request $request)
+   /* public function rememberPassword(Request $request)
     {
         $data = ['email' => $request->email];
         $user = User::where('email', $request->email)->first();
@@ -73,5 +107,5 @@ class UserController extends Controller
                 'message' => "incorrect email"
             ], 401);
         }
-    }    
+    }    */
 }

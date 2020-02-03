@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Ingredient;
 
 class IngredientController extends Controller
 {
@@ -13,7 +14,7 @@ class IngredientController extends Controller
      */
     public function index()
     {
-        //
+        return json_encode(Ingredient::all());
     }
 
     /**
@@ -26,6 +27,11 @@ class IngredientController extends Controller
         //
     }
 
+    public function remove(Request $request)
+    {
+       DB::delete('delete from ingredients where id = ' . $request->ingredient_id);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -34,8 +40,18 @@ class IngredientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ingredient_inv = new Ingredient();
+
+        return $ingredient_inv->register($request);
     }
+
+    public function rename(Request $request)
+    {
+        $ingredient_inv = new Ingredient();
+
+        return $ingredient_inv->rename($request);
+    }
+
 
     /**
      * Display the specified resource.

@@ -17,9 +17,9 @@ class CreateDishesContainingIngredientsTable extends Migration
             $table->integer('dish_id')->unsigned();
             $table->integer('ingredient_id')->unsigned();
             $table->foreign('dish_id')
-                            ->references('id')->on('dishes');
+                            ->references('id')->on('dishes')->onUpdate('cascade');
             $table->foreign('ingredient_id')
-                            ->references('id')->on('ingredients');
+                            ->references('id')->on('ingredients')->onUpdate('cascade');
             $table->timestamps();
         });
     }

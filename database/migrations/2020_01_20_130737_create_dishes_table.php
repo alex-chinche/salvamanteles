@@ -16,7 +16,7 @@ class CreateDishesTable extends Migration
         Schema::create('dishes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 50);
-            $table->string('type', 20);
+            $table->integer('type');
             $table->timestamps();
         });
     }

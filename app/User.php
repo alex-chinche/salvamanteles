@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Helpers\Token;
 use App\Application;
+use Illuminate\Http\Request;
 
 class User extends Model
 {
@@ -69,10 +70,10 @@ class User extends Model
                 users::where('id', $user->id)->update(['password' => $hashed_random_password]);
                 users::where('id', $user->id)->update(['changed' => ($user->changed + 1)]);
 
-                $to      = 'alex_rodriguez_apps1ma1819@cev.com'; //$user->email;
+                $to      = $user->email;
                 $subject = 'password reset bienestapp';
                 $message = 'the new password is: ' . $new_password;
-                $headers = 'From: alex_rodriguezrealnofake@cev.com' . "\r\n" .
+                $headers = 'From: salvamantelestfg@cev.com' . "\r\n" .
                     'Reply-To: ' . $to . "\r\n" .
                     'X-Mailer: PHP/' . phpversion();
                 
@@ -111,7 +112,54 @@ class User extends Model
         return $user;
     }
 
+    public function rename(Request $request)
+    {
+        try {
 
+            $affected = DB::table('users')
+            ->where('id', $request->user_id)
+            ->update(['name' => $request->name]);
+              
+            return response()->json([
+               200
+            ], 200);       
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => "wrong data"
+            ], 401);
+       }
+    
+
+    }
+
+    public function change_password(Request $request)
+    {
+
+        try {
+        
+            $user = get_logged_user($request);
+        if (Hash::check($request->password, $user->password))
+        {
+         $hashed_new_password = Hash::make($request->new_password);
+        users::where('id', $user->id)->update(['password' => $hashed_new_password]);
+        return $this->getTokenFromUser($user);
+
+        } else {
+         return response()->json([
+             'message' => "wrong data"
+         ], 401);
+        }
+            
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => "wrong data"
+            ], 401);
+        }
+        
+        
+
+
+    }
 
 
 }

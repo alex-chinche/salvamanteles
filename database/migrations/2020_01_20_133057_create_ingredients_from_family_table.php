@@ -17,9 +17,9 @@ class CreateIngredientsFromFamilyTable extends Migration
             $table->integer('ingredient_id')->unsigned();
             $table->integer('ingredient_family_id')->unsigned();
             $table->foreign('ingredient_id')
-                            ->references('id')->on('ingredients');
+                            ->references('id')->on('ingredients')->onUpdate('cascade');
             $table->foreign('ingredient_family_id')
-                            ->references('id')->on('ingredients_family');
+                            ->references('id')->on('ingredients_family')->onUpdate('cascade');
             $table->timestamps();
         });
     }

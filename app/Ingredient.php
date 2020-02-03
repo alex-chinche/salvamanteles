@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class Ingredient extends Model
 {
@@ -32,7 +33,7 @@ class Ingredient extends Model
     public function register(Request $request)
     {
         try {
-            $ingredient = new Ingredient();
+            $ingredient = new self();
             $ingredient->name = $request->name;
             $profile->save();
               
@@ -93,7 +94,45 @@ class Ingredient extends Model
         }
     }
 
+    public function rename(Request $request)
+    {
+        try {
 
+            $affected = DB::table('ingredients')
+            ->where('id', $request->ingredient_id)
+            ->update(['name' => $request->name]);
+              
+            return response()->json([
+               200
+            ], 200);       
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => "wrong data"
+            ], 401);
+       }
+    
+
+    }
+
+    public function change_family(Request $request)
+    {
+        try {
+
+            $affected = DB::table('ingredients')
+            ->where('id', $request->ingredient_id)
+            ->update(['name' => $request->name]);
+              
+            return response()->json([
+               200
+            ], 200);       
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => "wrong data"
+            ], 401);
+       }
+    
+
+    }
 
 
 }

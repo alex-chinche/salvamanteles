@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class Dish extends Model
 {
@@ -36,5 +37,46 @@ class Dish extends Model
             ], 401);
         }
     }
+
+    public function register(Request $request)
+    {
+        try {
+            $dish = new self();
+            $dish->name = $request->name;
+            $dish->type = $request->type;
+
+            $dish->save();
+              
+            return response()->json([200
+            ], 200);       
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => "wrong data"
+            ], 401);
+       }
+    
+
+    }
+
+    public function rename(Request $request)
+    {
+        try {
+
+            $affected = DB::table('dishes')
+            ->where('id', $request->dish_id)
+            ->update(['name' => $request->name]);
+              
+            return response()->json([
+               200
+            ], 200);       
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => "wrong data"
+            ], 401);
+       }
+    
+
+    }
+
     
 }

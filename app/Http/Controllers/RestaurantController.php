@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Helpers\RestaurantReader;
+use App\Restaurant;
 
 class RestaurantController extends Controller
 {
@@ -25,7 +26,12 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        //
+        
+    }
+
+    public function remove(Request $request)
+    {
+       DB::delete('delete from restaurants where id = ' . $request->restaurant_id);
     }
 
     /**
@@ -36,6 +42,19 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
+
+        $restaurant_inv = new Restaurant();
+
+        return $restaurant_inv->register($request);
+        
+    }
+
+    public function rename(Request $request)
+    {
+
+        $restaurant_inv = new Restaurant();
+
+        return $restaurant_inv->rename($request);
         
     }
 
