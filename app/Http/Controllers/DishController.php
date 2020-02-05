@@ -54,7 +54,29 @@ class DishController extends Controller
         return $dish_inv->rename($request);
     }
 
+    public function remove_resturant(Request $request)
+    {
+        $dish_inv = new Dish();
 
+        return $dish_inv->remove_resturant($request);
+    }
+
+    public function remove_ingredient(Request $request)
+    {
+        $dish_inv = new Dish();
+
+        return $dish_inv->remove_ingredient($request);
+    }
+
+    public function assign_restaurant(Request $request)
+    {
+        $dish_inv = new Dish();
+
+        return $dish_inv->assign_restaurant($request);
+    }
+
+    
+    
     /**
      * Display the specified resource.
      *

@@ -78,5 +78,42 @@ class Dish extends Model
 
     }
 
+    public function remove_resturant(Request $request)
+    {
+        try {
+
+            $this->find($request->profile)->restaurants()->delete();
+              
+            return response()->json([
+               200
+            ], 200);       
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => "wrong data"
+            ], 401);
+       }
+    
+
+    }
+
+    public function remove_ingredient(Request $request)
+    {
+        try {
+
+            $this->find($request->dish_id)->ingredients()->find($request->ingredient_id)->delete();
+              
+            return response()->json([
+               200
+            ], 200);       
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => "wrong data"
+            ], 401);
+       }
+    
+
+    }
+           
+
     
 }

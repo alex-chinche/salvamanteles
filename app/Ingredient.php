@@ -48,21 +48,6 @@ class Ingredient extends Model
 
     }
 
-    public function assign_profile(Request $request) {
-
-
-        try {
-
-            $ingredient = self::find($request->ingredient_id);
-
-            $ingredient->profiles()->attach($request->profile->id);
-        } catch (\Throwable $th) {
-            return response()->json([
-                'message' => "wrong data"
-            ], 401);
-        }
-    }
-
 
     public function assign_family(Request $request) {
 
@@ -133,6 +118,33 @@ class Ingredient extends Model
     
 
     }
+
+
+
+
+    public function remove_family(Request $request)
+    {
+        try {
+
+            $this->find($request->ingredient_id)->families()->delete();
+           
+            return response()->json([
+               200
+            ], 200);       
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => "wrong data"
+            ], 401);
+       }
+    
+
+    }
+
+           
+
+    
+
+
 
 
 }

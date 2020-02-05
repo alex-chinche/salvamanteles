@@ -13,7 +13,7 @@ class Restaurant extends Model
         'name', 'icon',
     ];
 
-    public function restaurants()
+    public function dishes()
     {
         return $this->belongsToMany('App\Dish', 'restaurants_offering_dishes', 'restaurant_id', 'dish_id');
     }
@@ -69,6 +69,24 @@ class Restaurant extends Model
             $affected = DB::table('restaurants')
             ->where('id', $request->restaurant_id)
             ->update(['icon' => $request->icon]);
+              
+            return response()->json([
+               200
+            ], 200);       
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => "wrong data"
+            ], 401);
+       }
+    
+
+    }
+
+    public function remove_dish(Request $request)
+    {
+        try {
+
+            $this->find($request->restaurant_id)->dishes()->find($request->ingredient_id)->delete();
               
             return response()->json([
                200

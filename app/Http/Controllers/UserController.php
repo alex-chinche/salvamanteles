@@ -45,6 +45,20 @@ class UserController extends Controller
         return $users_inv->recover_password($request);
     }
 
+    public function change_password(Request $request)
+    {
+        $users_inv = new User();
+
+        return $users_inv->change_password($request);
+    }
+
+    public function remove(Request $request)
+    {
+       DB::delete('delete from users where id = ' . $request->user_id);
+    }
+
+
+    
     /*public function loginUser(Request $request)
     {
         $data = ['email' => $request->email];

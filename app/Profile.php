@@ -19,7 +19,7 @@ class Profile extends Model
     public $timestamps = false;
 
     public function users(){
-        return $this->belongsTo('App\users', 'user_id');
+        return $this->belongsTo('App\User', 'user_id');
 }
 
 public function ingredients()
@@ -74,5 +74,36 @@ public function register(Request $request)
     }
 
 
+    public function remove_ingredient(Request $request)
+    {
+        try {
+
+            $this->find($request->profile_id)->ingredients()->find($request->ingredient_id)->delete();
+              
+            return response()->json([
+               200
+            ], 200);       
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => "wrong data"
+            ], 401);
+       }
+    
+
+    }
+
+    public function assign_ingredient(Request $request) {
+
+        try {
+
+            $profile = self::find($request->profile_id);
+
+            $ingredient->profiles()->attach($request->ingredient_id);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => "wrong data"
+            ], 401);
+        }
+    }
 
 }

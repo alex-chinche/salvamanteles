@@ -52,6 +52,21 @@ class ProfileController extends Controller
         return $profile_inv->rename($request);
     }
 
+    public function remove_ingredient(Request $request)
+    {
+        $profile_inv = new Profile();
+
+        return $profile_inv->remove_ingredient($request);
+    }
+
+    public function assign_ingredient(Request $request)
+    {
+        $ingredient_inv = new Ingredient();
+
+        return $ingredient_inv->assign_ingredient($request);
+    }
+
+    
     /**
      * Display the specified resource.
      *
