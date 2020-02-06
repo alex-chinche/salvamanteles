@@ -52,6 +52,20 @@ class IngredientFamilyController extends Controller
         return $ingredient_family_inv->rename($request);
     }
 
+    public function assign_ingredient(Request $request)
+    {
+        $ingredient_family_inv = new Ingredient_Family();
+
+        return $ingredient_family_inv->assign_ingredient($request);
+    }
+
+    public function remove_ingredient(Request $request)
+    {
+        $ingredient_family_inv = new Ingredient_Family();
+
+        return $ingredient_family_inv->remove_ingredient($request);
+    }
+
     /**
      * Display the specified resource.
      *

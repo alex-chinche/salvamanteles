@@ -75,6 +75,13 @@ class DishController extends Controller
         return $dish_inv->assign_restaurant($request);
     }
 
+    public function assign_ingredient(Request $request)
+    {
+        $dish_inv = new Dish();
+
+        return $dish_inv->assign_ingredient($request);
+    }
+
     
     
     /**

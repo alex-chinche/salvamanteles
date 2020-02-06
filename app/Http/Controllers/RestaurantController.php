@@ -58,6 +58,34 @@ class RestaurantController extends Controller
         
     }
 
+    public function change_icon(Request $request)
+    {
+
+        $restaurant_inv = new Restaurant();
+
+        return $restaurant_inv->change_icon($request);
+        
+    }
+
+    public function remove_dish(Request $request)
+    {
+
+        $restaurant_inv = new Restaurant();
+
+        return $restaurant_inv->remove_dish($request);
+        
+    }
+
+    public function assign_dish(Request $request)
+    {
+
+        $restaurant_inv = new Restaurant();
+
+        return $restaurant_inv->assign_dish($request);
+        
+    }
+
+
      /**
      * Display the specified resource.
      *

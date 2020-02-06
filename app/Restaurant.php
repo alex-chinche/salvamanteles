@@ -100,6 +100,21 @@ class Restaurant extends Model
 
     }
 
+    public function assign_dish(Request $request) {
+
+
+        try {
+
+            $restaurant = self::find($request->restaurant_id);
+
+            $restaurant->restaurants()->attach($request->dish_id);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => "wrong data"
+            ], 401);
+        }
+    }
+
 
 
 }

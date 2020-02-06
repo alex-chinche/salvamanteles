@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\Helpers\Token;
 use App\Application;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class User extends Model
 {

@@ -106,4 +106,6 @@ public function register(Request $request)
         }
     }
 
+    
+
 }

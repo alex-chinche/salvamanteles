@@ -58,6 +58,39 @@ class Ingredient_Family extends Model
 
     }
 
+    public function assign_ingredient(Request $request) {
+
+
+        try {
+
+            $family = self::find($request->ingredient_family_id);
+
+            $family->ingredients()->attach($request->ingredient_id);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => "wrong data"
+            ], 401);
+        }
+    }
+
+
+    public function remove_ingredient(Request $request)
+    {
+        try {
+
+            $this->find($request->ingredient_family_id)->ingredients()->find($request->ingredient_id)->delete();
+              
+            return response()->json([
+               200
+            ], 200);       
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => "wrong data"
+            ], 401);
+       }
+    
+
+    }
 
 
 }

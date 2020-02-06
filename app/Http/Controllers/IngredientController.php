@@ -72,11 +72,32 @@ class IngredientController extends Controller
         return $ingredient_inv->assign_dish($request);
     }
 
+    public function remove_dish(Request $request)
+    {
+        $ingredient_inv = new Ingredient();
+
+        return $ingredient_inv->remove_dish($request);
+    }
+
     public function change_family(Request $request)
     {
         $ingredient_inv = new Ingredient();
 
         return $ingredient_inv->change_family($request);
+    }
+
+    public function assign_profile(Request $request)
+    {
+        $ingredient_inv = new Ingredient();
+
+        return $ingredient_inv->assign_profile($request);
+    }
+
+    public function remove_profile(Request $request)
+    {
+        $ingredient_inv = new Ingredient();
+
+        return $ingredient_inv->remove_profile($request);
     }
 
   

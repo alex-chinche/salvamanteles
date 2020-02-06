@@ -30,7 +30,7 @@ class Dish extends Model
 
             $dish = self::find($request->dish_id);
 
-            $dish->dishes()->attach($request->restaurant_id);
+            $dish->restaurants()->attach($request->restaurant_id);
         } catch (\Throwable $th) {
             return response()->json([
                 'message' => "wrong data"
@@ -112,6 +112,21 @@ class Dish extends Model
        }
     
 
+    }
+
+    public function assign_ingredient(Request $request) {
+
+
+        try {
+
+            $dish = self::find($request->dish_id);
+
+            $dish->ingredients()->attach($request->ingredient_id);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => "wrong data"
+            ], 401);
+        }
     }
            
 

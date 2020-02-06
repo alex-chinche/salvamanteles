@@ -56,12 +56,64 @@ class Ingredient extends Model
 
             $ingredient = self::find($request->ingredient_id);
 
-            $ingredient->families()->attach($request->family_id);
+            $ingredient->families()->attach($request->ingredient_family_id);
         } catch (\Throwable $th) {
             return response()->json([
                 'message' => "wrong data"
             ], 401);
         }
+    }
+
+    public function remove_family(Request $request)
+    {
+        try {
+
+            $this->find($request->ingredient_id)->families()->delete();
+           
+            return response()->json([
+               200
+            ], 200);       
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => "wrong data"
+            ], 401);
+       }
+    
+
+    }
+
+    public function assign_profile(Request $request) {
+
+
+        try {
+
+            $ingredient = self::find($request->ingredient_id);
+
+            $ingredient->profiles()->attach($request->profile_id);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => "wrong data"
+            ], 401);
+        }
+    }
+
+
+    public function remove_profile(Request $request)
+    {
+        try {
+
+            $this->find($request->ingredient_id)->profiles()->find($request->profile_id)->delete();
+              
+            return response()->json([
+               200
+            ], 200);       
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => "wrong data"
+            ], 401);
+       }
+    
+
     }
 
     public function assign_dish(Request $request) {
@@ -77,6 +129,24 @@ class Ingredient extends Model
                 'message' => "wrong data"
             ], 401);
         }
+    }
+
+    public function remove_dish(Request $request)
+    {
+        try {
+
+            $this->find($request->ingredient_id)->dishes()->delete();
+           
+            return response()->json([
+               200
+            ], 200);       
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => "wrong data"
+            ], 401);
+       }
+    
+
     }
 
     public function rename(Request $request)
@@ -121,24 +191,6 @@ class Ingredient extends Model
 
 
 
-
-    public function remove_family(Request $request)
-    {
-        try {
-
-            $this->find($request->ingredient_id)->families()->delete();
-           
-            return response()->json([
-               200
-            ], 200);       
-        } catch (\Throwable $th) {
-            return response()->json([
-                'message' => "wrong data"
-            ], 401);
-       }
-    
-
-    }
 
            
 
