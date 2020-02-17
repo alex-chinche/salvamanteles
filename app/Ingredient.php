@@ -10,7 +10,7 @@ class Ingredient extends Model
     protected $table = 'ingredients';
 
     protected $fillable = [
-        'name',
+        'name', 'description'
     ];
 
     public function profiles()
@@ -35,6 +35,7 @@ class Ingredient extends Model
         try {
             $ingredient = new self();
             $ingredient->name = $request->name;
+            $ingredient->description = $request->description;
             $profile->save();
               
             return response()->json([200
@@ -156,6 +157,26 @@ class Ingredient extends Model
             $affected = DB::table('ingredients')
             ->where('id', $request->ingredient_id)
             ->update(['name' => $request->name]);
+              
+            return response()->json([
+               200
+            ], 200);       
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => "wrong data"
+            ], 401);
+       }
+    
+
+    }
+
+    public function change_description(Request $request)
+    {
+        try {
+
+            $affected = DB::table('ingredients')
+            ->where('id', $request->ingredient_id)
+            ->update(['description' => $request->description]);
               
             return response()->json([
                200
