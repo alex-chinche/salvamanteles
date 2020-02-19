@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInita1f2e8c20dcd34295ddba26fc24d52ba
+class ComposerStaticInit39fd89d83af98cb0404b80939edde4c2
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -799,7 +799,6 @@ class ComposerStaticInita1f2e8c20dcd34295ddba26fc24d52ba
         'Faker\\Provider\\es_ES\\Payment' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/es_ES/Payment.php',
         'Faker\\Provider\\es_ES\\Person' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/es_ES/Person.php',
         'Faker\\Provider\\es_ES\\PhoneNumber' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/es_ES/PhoneNumber.php',
-        'Faker\\Provider\\es_ES\\Text' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/es_ES/Text.php',
         'Faker\\Provider\\es_PE\\Address' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/es_PE/Address.php',
         'Faker\\Provider\\es_PE\\Company' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/es_PE/Company.php',
         'Faker\\Provider\\es_PE\\Person' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/es_PE/Person.php',
@@ -919,7 +918,6 @@ class ComposerStaticInita1f2e8c20dcd34295ddba26fc24d52ba
         'Faker\\Provider\\ko_KR\\Internet' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ko_KR/Internet.php',
         'Faker\\Provider\\ko_KR\\Person' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ko_KR/Person.php',
         'Faker\\Provider\\ko_KR\\PhoneNumber' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ko_KR/PhoneNumber.php',
-        'Faker\\Provider\\ko_KR\\Text' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/ko_KR/Text.php',
         'Faker\\Provider\\lt_LT\\Address' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/lt_LT/Address.php',
         'Faker\\Provider\\lt_LT\\Company' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/lt_LT/Company.php',
         'Faker\\Provider\\lt_LT\\Internet' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/lt_LT/Internet.php',
@@ -4426,11 +4424,11 @@ class ComposerStaticInita1f2e8c20dcd34295ddba26fc24d52ba
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInita1f2e8c20dcd34295ddba26fc24d52ba::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInita1f2e8c20dcd34295ddba26fc24d52ba::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInita1f2e8c20dcd34295ddba26fc24d52ba::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInita1f2e8c20dcd34295ddba26fc24d52ba::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInita1f2e8c20dcd34295ddba26fc24d52ba::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit39fd89d83af98cb0404b80939edde4c2::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit39fd89d83af98cb0404b80939edde4c2::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit39fd89d83af98cb0404b80939edde4c2::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit39fd89d83af98cb0404b80939edde4c2::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit39fd89d83af98cb0404b80939edde4c2::$classMap;
 
         }, null, ClassLoader::class);
     }

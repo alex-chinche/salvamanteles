@@ -2,11 +2,20 @@
 
 use Illuminate\Http\Request;
 
-Route::post('loginUser', 'UserController@loginUser');
+//          ->middleware('token');
 
-Route::post('createUser', 'UserController@createUser');
+            
+            /////   Users   /////
 
-Route::post('rememberPassword', 'UserController@rememberPassword');
+Route::post('loginUser', 'UserController@login');
+
+Route::post('createUser', 'UserController@store');
+
+Route::get('getUsers', 'UserController@index')->middleware('token');
+
+Route::post('recoverPassword', 'UserController@recover_password');
+
+Route::post('changePassword', 'UserController@change_password')->middleware('token');
 
 Route::get('restaurantToBBDD', 'RestaurantController@index');
 

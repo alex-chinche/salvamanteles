@@ -41,7 +41,7 @@ class User extends Model
     public function login(Request $request)
     {
         try {
-            $user = self::where('email', $request->email)->first();
+            $user = User::where('email', $request->email)->first();
            if (Hash::check($request->password, $user->password))
            {
             return $this->getTokenFromUser($user);
@@ -61,7 +61,7 @@ class User extends Model
     public function recover_password(Request $request)
     {
         try {
-            $user = users::where('email', $request->email)->first();
+            $user = User::where('email', $request->email)->first();
             if ($user == null) {
                 return response()->json([
                     'message' => "email not found"
@@ -69,8 +69,8 @@ class User extends Model
             } else  {
                 $new_password = str_random(8);
                 $hashed_random_password = Hash::make($new_password);
-                users::where('id', $user->id)->update(['password' => $hashed_random_password]);
-                users::where('id', $user->id)->update(['changed' => ($user->changed + 1)]);
+                User::where('id', $user->id)->update(['password' => $hashed_random_password]);
+                User::where('id', $user->id)->update(['changed' => ($user->changed + 1)]);
 
                 $to      = $user->email;
                 $subject = 'password reset bienestapp';
@@ -81,7 +81,7 @@ class User extends Model
                 
                 mail($to, $subject, $message, $headers);
 
-                return $new_password;
+                return 200;
 
             }
 
@@ -110,7 +110,7 @@ class User extends Model
         $token_inv = new Token();
         $coded_token = $request->header('token');
         $decoded_token = $token_inv->decode_token($coded_token);
-        $user = users::where('email', $decoded_token[0])->first();
+        $user = User::where('email', $decoded_token[0])->first();
         return $user;
     }
 
@@ -138,12 +138,13 @@ class User extends Model
     {
 
         try {
-        
-            $user = get_logged_user($request);
+            $user = User::get_logged_user($request);
         if (Hash::check($request->password, $user->password))
         {
          $hashed_new_password = Hash::make($request->new_password);
-        users::where('id', $user->id)->update(['password' => $hashed_new_password]);
+         User::where('id', $user->id)->update(['password' => $hashed_new_password]);
+         User::where('id', $user->id)->update(['changed' => ($user->changed + 1)]);
+         $user = User::get_logged_user($request);
         return $this->getTokenFromUser($user);
 
         } else {

@@ -10,7 +10,7 @@ class Dish extends Model
     protected $table = 'dishes';
 
     protected $fillable = [
-        'name', 'type',
+        'name', 'type', 'description'
     ];
 
     public function ingredients()
@@ -44,6 +44,7 @@ class Dish extends Model
             $dish = new self();
             $dish->name = $request->name;
             $dish->type = $request->type;
+            $dish->description = $request->description;
 
             $dish->save();
               
